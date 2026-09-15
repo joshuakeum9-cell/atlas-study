@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Atlas design tokens
+   A calm, credible academic palette: navy for structure, a single confident
+   blue for action, warm paper neutrals for surfaces, and two semantic accents
+   (amber = something to work on, emerald = something mastered).
+--------------------------------------------------------------------------- */
+@theme {
+  --color-navy-50: #f2f6fb;
+  --color-navy-100: #e2ebf6;
+  --color-navy-200: #c6d8ec;
+  --color-navy-300: #9bbadb;
+  --color-navy-400: #6893c4;
+  --color-navy-500: #4471a9;
+  --color-navy-600: #32588c;
+  --color-navy-700: #2a4671;
+  --color-navy-800: #1d3357;
+  --color-navy-900: #0b2545;
+  --color-navy-950: #06172d;
+
+  --color-brand-50: #eff5ff;
+  --color-brand-100: #dbe8fe;
+  --color-brand-200: #bfd6fe;
+  --color-brand-300: #93bbfd;
+  --color-brand-400: #609afa;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+  --color-brand-700: #1d4ed8;
+  --color-brand-800: #1e40af;
+  --color-brand-900: #1e3a8a;
+
+  --color-paper: #fbfaf7;
+  --color-paper-edge: #efece4;
+  --color-ink: #0f172a;
+
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-hand: "Segoe Print", "Bradley Hand", "Chalkboard SE", "Comic Sans MS", "Segoe Script", cursive;
+
+  --shadow-panel: 0 1px 2px rgb(11 37 69 / 0.06), 0 8px 24px -12px rgb(11 37 69 / 0.18);
+  --shadow-lift: 0 2px 4px rgb(11 37 69 / 0.06), 0 18px 40px -18px rgb(11 37 69 / 0.30);
+
+  --animate-fade-up: fade-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-fade-in: fade-in 0.3s ease-out both;
+  --animate-scale-in: scale-in 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-pulse-ring: pulse-ring 1.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-caret: caret 1s step-end infinite;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to { background-position: 200% 0; }
+}
+@keyframes pulse-ring {
+  0% { transform: scale(0.85); opacity: 0.7; }
+  70% { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+@keyframes caret {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Visible, consistent focus for every keyboard user. */
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 2px solid var(--color-brand-600);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  ::selection {
+    background: var(--color-brand-200);
+    color: var(--color-navy-900);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .skeleton {
+    background-image: linear-gradient(
+      90deg,
+      var(--color-navy-100) 0%,
+      var(--color-navy-50) 40%,
+      var(--color-navy-100) 80%
+    );
+    background-size: 200% 100%;
+    animation: var(--animate-shimmer);
+  }
+
+  .scrollbar-slim {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-navy-200) transparent;
+  }
+  .scrollbar-slim::-webkit-scrollbar { width: 8px; height: 8px; }
+  .scrollbar-slim::-webkit-scrollbar-thumb {
+    background: var(--color-navy-200);
+    border-radius: 999px;
+  }
+  .scrollbar-slim::-webkit-scrollbar-track { background: transparent; }
+
+  /* Faint ruled-paper background used by the worksheet canvas. */
+  .paper-grid {
+    background-image:
+      linear-gradient(to right, rgb(11 37 69 / 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(11 37 69 / 0.045) 1px, transparent 1px);
+    background-size: 26px 26px;
+  }
+}
