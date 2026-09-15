@@ -101,9 +101,9 @@ interface InsightsPageProps {
 }
 
 export function InsightsPage({ onBack, onOpenDoc, onAskTutor }: InsightsPageProps) {
-  const finance = courses[0]
+  const course = courses[0]
   const avgMastery = Math.round(
-    finance.chapters.reduce((sum, ch) => sum + ch.mastery, 0) / finance.chapters.length,
+    course.chapters.reduce((sum, ch) => sum + ch.mastery, 0) / course.chapters.length,
   )
   const totalMinutes = activityWeeks.reduce((sum, w) => sum + w.minutes, 0)
 
@@ -129,7 +129,7 @@ export function InsightsPage({ onBack, onOpenDoc, onAskTutor }: InsightsPageProp
         <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <StatCard
             icon={Repeat}
-            value="4"
+            value={String(struggles.length)}
             label="Recurring mistakes"
             detail="One of them accounts for most of the marks lost this term"
           />
@@ -137,7 +137,7 @@ export function InsightsPage({ onBack, onOpenDoc, onAskTutor }: InsightsPageProp
             icon={TrendingUp}
             value={`${avgMastery}%`}
             label="Average mastery"
-            detail={`Across ${finance.chapters.length} chapters in ${finance.code}`}
+            detail={`Across ${course.chapters.length} chapters in ${course.code}`}
           />
           <StatCard
             icon={Clock}
@@ -147,9 +147,9 @@ export function InsightsPage({ onBack, onOpenDoc, onAskTutor }: InsightsPageProp
           />
           <StatCard
             icon={CheckCircle2}
-            value="3"
-            label="Habits fixed"
-            detail="Things that used to go wrong and no longer do"
+            value={String(strengths.length)}
+            label="What is going well"
+            detail="Things that are reliably right in your work"
           />
         </div>
 
@@ -286,11 +286,11 @@ export function InsightsPage({ onBack, onOpenDoc, onAskTutor }: InsightsPageProp
             <div className="flex items-center gap-2">
               <BookOpen className="h-4 w-4 text-brand-700" aria-hidden="true" />
               <h2 className="text-[15px] font-semibold tracking-tight text-navy-900">
-                Chapter mastery - {finance.code}
+                Chapter mastery - {course.code}
               </h2>
             </div>
             <ul className="mt-3 space-y-3">
-              {finance.chapters.map((chapter) => (
+              {course.chapters.map((chapter) => (
                 <li key={chapter.id}>
                   <div className="flex items-baseline justify-between gap-3">
                     <span className="truncate text-[13px] text-navy-800">

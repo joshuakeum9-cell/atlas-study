@@ -119,7 +119,7 @@ export function WorksheetViewer({
             )}
             style={{ touchAction: 'none' }}
             role="img"
-            aria-label="Photographed worksheet: Problem Set 4, Harbor Logistics, with handwritten answers to parts a, b and c."
+            aria-label="Photographed worksheet: Algebra I Worksheet 5, question 3, with handwritten working for parts a, b and c."
             onPointerDown={onPointerDown}
             onPointerMove={onPointerMove}
             onPointerUp={onPointerUp}
@@ -172,27 +172,43 @@ export function WorksheetViewer({
               {worksheet.printed.intro}
             </text>
 
-            {/* Givens table */}
-            <g>
-              <rect x="64" y="162" width="440" height="192" fill="#f7f8fb" stroke="#dde4ee" />
-              {worksheet.printed.givens.map(([label, value], i) => (
-                <g key={label}>
-                  <text x="78" y={190 + i * 30} fontSize="13.5" fill="#33405a" fontFamily="Georgia, serif">
-                    {label}
-                  </text>
-                  <text
-                    x="488"
-                    y={190 + i * 30}
-                    fontSize="13.5"
-                    fill="#152a4e"
-                    textAnchor="end"
-                    fontFamily="Georgia, serif"
-                  >
-                    {value}
-                  </text>
-                </g>
-              ))}
-            </g>
+            {/* The question itself, set large. */}
+            {worksheet.printed.equation ? (
+              <text
+                x="118"
+                y="212"
+                fontSize="30"
+                fill="#152a4e"
+                fontFamily="Georgia, serif"
+                letterSpacing="0.5"
+              >
+                {worksheet.printed.equation}
+              </text>
+            ) : null}
+
+            {/* Table of supplied figures, only for questions that have one. */}
+            {worksheet.printed.givens.length ? (
+              <g>
+                <rect x="64" y="162" width="440" height="192" fill="#f7f8fb" stroke="#dde4ee" />
+                {worksheet.printed.givens.map(([label, value], i) => (
+                  <g key={label}>
+                    <text x="78" y={190 + i * 30} fontSize="13.5" fill="#33405a" fontFamily="Georgia, serif">
+                      {label}
+                    </text>
+                    <text
+                      x="488"
+                      y={190 + i * 30}
+                      fontSize="13.5"
+                      fill="#152a4e"
+                      textAnchor="end"
+                      fontFamily="Georgia, serif"
+                    >
+                      {value}
+                    </text>
+                  </g>
+                ))}
+              </g>
+            ) : null}
 
             {/* Part prompts */}
             {worksheet.printed.parts.map((part) => (

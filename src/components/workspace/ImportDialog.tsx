@@ -15,7 +15,7 @@ interface ImportDialogProps {
 }
 
 export function ImportDialog({ open, onClose, onUseSample }: ImportDialogProps) {
-  const { state, dispatch, markExplored, toast } = useStore()
+  const { state, dispatch, toast } = useStore()
   const [dragging, setDragging] = useState(false)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -33,7 +33,6 @@ export function ImportDialog({ open, onClose, onUseSample }: ImportDialogProps) 
       })
       if (objectUrl) setObjectUrl(doc.id, objectUrl)
       dispatch({ type: 'add-user-doc', doc })
-      markExplored('import')
       toast({
         tone: 'success',
         title: 'Added to this assignment',
@@ -144,7 +143,7 @@ export function ImportDialog({ open, onClose, onUseSample }: ImportDialogProps) 
               Use the sample photographed worksheet
             </span>
             <span className="mt-0.5 block text-[12.5px] leading-relaxed text-navy-600">
-              A photo of a handwritten Problem Set 4 page, already in the workspace. This is the one
+              A photo of a handwritten Worksheet 5 page, already in the workspace. This is the one
               to try if you want to see the circle-and-ask flow.
             </span>
           </span>

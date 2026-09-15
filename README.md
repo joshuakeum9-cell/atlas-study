@@ -15,42 +15,48 @@ trying to be.
 
 ## The idea in one paragraph
 
-A student's work is scattered across four places — a PDF handout, a paper problem set, notes in
-some app, and an AI chat that can see none of it. So they retype their question badly and get an
-answer to a question they did not ask. Atlas puts all of it in one workspace: you circle the line
-of your own handwriting that is going wrong, confirm what the recogniser read, and ask about
-*that*. Because everything lives together, the answer arrives with the assignment brief, your
-notes and your marked quiz already in view. Over a term that becomes an academic memory — the
-tutor can say "this is the fourth time, and it only happens on payables when you are working
-quickly", which is something no fresh chat can ever say.
+A student's work is scattered across four places - a worksheet, a page of paper they wrote on,
+notes in some app, and an AI chat that can see none of it. So they retype their question badly and
+get an answer to a question they did not ask. Atlas puts all of it in one workspace: you circle the
+line of your own handwriting that is going wrong, confirm what the recogniser read, and ask about
+*that*. Because everything lives together, the answer arrives with your notes and your marked quiz
+already in view. Over a term that becomes an academic memory - the tutor can say "this is the third
+time, and it only happens when the number outside the bracket is negative", which is something no
+fresh chat can ever say.
 
 ## What you can actually do in the demo
 
-The demo opens on **FIN 301 Corporate Finance, Problem Set 4** — a Harbor Logistics free cash flow
-question, with a photographed page of handwritten working already in the workspace. The work
-contains one deliberate and very common mistake, which is what makes the tutor's reply worth
-reading.
+The demo opens on **Algebra I, Worksheet 5** - one question, with a photographed page of
+handwritten working already in the workspace:
+
+> Solve for x:   4(x - 2) - 3(x + 1) = 5
+
+The working contains one deliberate mistake, and it is the most common one in the whole topic: the
+student expands -3(x + 1) as -3x + 3, applying the minus to the first term only. It carries through
+all three steps, so their answer is x = 10 when it should be x = 16. That is what makes the tutor's
+reply worth reading, and it is instantly readable whether or not you have done algebra recently.
 
 | # | Try this | Where |
 | --- | --- | --- |
-| 1 | Switch courses and assignments | Left sidebar |
-| 2 | Open a PDF, a note or the photographed worksheet | Document tabs |
-| 3 | **Drag a box around any handwritten answer** | On the worksheet |
+| 1 | Switch between the three assignments | Left sidebar |
+| 2 | Open the photographed page or the class notes | Document tabs |
+| 3 | **Drag a box around any line of the handwriting** | On the worksheet |
 | 4 | Select a region with the keyboard instead | Buttons under the page |
 | 5 | Confirm or edit the transcription before the tutor sees it | Dialog that appears |
 | 6 | Ask a question by text | Tutor panel |
 | 7 | Press the microphone and watch it "listen" | Tutor composer |
-| 8 | Open a previous conversation on this assignment | Tutor panel → History |
-| 9 | Search `find the notes where I struggled with working capital` | Top search bar (`Ctrl`/`Cmd` + `K`) |
-| 10 | Open learning insights: recurring mistakes, strengths, review plan | Top bar → Insights |
-| 11 | Answer the short practice set and read the feedback | Insights page |
-| 12 | Create and copy a share link | Top bar → Share |
-| 13 | Import a file from your own machine (it never leaves the browser) | Document tabs → Import |
+| 8 | Open a previous conversation | Tutor panel -> History |
+| 9 | Search `the notes where I struggled with the minus sign` | Top search bar (`Ctrl`/`Cmd` + `K`) |
+| 10 | Open learning insights and answer the practice set | Top bar -> Insights |
+| 11 | Create and copy a share link | Top bar -> Share |
+| 12 | Import a file from your own machine (it never leaves the browser) | Document tabs -> Import |
 
 There is a **Demo guide** in the top bar that tracks which of these you have tried.
 
 Progress is kept in `localStorage`, so conversations, confirmed transcriptions, practice results
-and recent searches survive a refresh. **Reset the demo** in the sidebar clears it.
+and recent searches survive a refresh. **Reset the demo** in the sidebar clears it. The storage key
+is versioned, so changing the sample data never leaves a returning visitor with conversations that
+quote a worksheet they are no longer looking at.
 
 ## Running it locally
 
@@ -162,6 +168,8 @@ src/
 
 - Navy, a single confident blue, and warm paper neutrals. Amber means "something to work on",
   emerald means "mastered".
+- One course, three assignments, four documents. The demo makes its point with a single worked
+  example rather than a large fake library.
 - Three-column workspace at 1024px and up; below that a segmented Files / Document / Tutor
   switcher, so it stays usable on a tablet and a phone.
 - Dragging on the worksheet is a pointer interaction, so there is a **keyboard-equivalent list of
@@ -177,8 +185,8 @@ This matters more than the features, so it is stated in three places: a banner o
 - Tutor replies are hand-written scripts selected by keyword scoring. Ask something outside the
   script and it says so rather than inventing an answer.
 - Handwriting "recognition" is a lookup against pre-authored regions of the sample page. The
-  transcript for part (a) contains a deliberate misread so the confirm-or-edit step has a real job
-  to do.
+  transcript for part (a) contains a deliberate misread (it reads the final 5 as a 6) so the
+  confirm-or-edit step has a real job to do.
 - The microphone requests no permission and records nothing. The waveform is generated numbers.
 - Search is a hand-written scorer over a small local library, not a semantic index.
 - Share links are generated locally and point back at this demo. Nothing is published.

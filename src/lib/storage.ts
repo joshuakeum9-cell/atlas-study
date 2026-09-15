@@ -28,6 +28,21 @@ export function writeJSON(name: string, value: unknown): void {
   }
 }
 
+/** Removes any of our keys other than the one currently in use. */
+export function clearSupersededKeys(keepName: string): void {
+  try {
+    const keep = storageKey(keepName)
+    const doomed: string[] = []
+    for (let i = 0; i < window.localStorage.length; i += 1) {
+      const key = window.localStorage.key(i)
+      if (key && key.startsWith(`${PREFIX}/`) && key !== keep) doomed.push(key)
+    }
+    doomed.forEach((k) => window.localStorage.removeItem(k))
+  } catch {
+    // Storage unavailable. Leaving the old keys behind is harmless.
+  }
+}
+
 export function clearAll(): void {
   try {
     const doomed: string[] = []

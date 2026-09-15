@@ -32,7 +32,7 @@ const TARGET_NOUN: Record<ShareTarget, string> = {
 }
 
 export function ShareDialog({ request, onClose }: ShareDialogProps) {
-  const { dispatch, markExplored, toast } = useStore()
+  const { dispatch, toast } = useStore()
   const [access, setAccess] = useState<ShareAccess>('view')
   const [link, setLink] = useState<ShareLink | null>(null)
   const [creating, setCreating] = useState(false)
@@ -56,7 +56,6 @@ export function ShareDialog({ request, onClose }: ShareDialogProps) {
     setLink(created)
     setCreating(false)
     dispatch({ type: 'record-share' })
-    markExplored('share')
   }
 
   const copy = async () => {

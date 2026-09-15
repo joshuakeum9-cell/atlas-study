@@ -122,6 +122,9 @@ export interface Worksheet {
     heading: string
     sub: string
     intro: string
+    /** Displayed large under the intro. The whole setup for a short question. */
+    equation?: string
+    /** Optional table of supplied figures. Omitted for short questions. */
     givens: [string, string][]
     parts: { label: string; text: string; y: number }[]
   }

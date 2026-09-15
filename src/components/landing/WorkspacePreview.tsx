@@ -21,7 +21,7 @@ export function WorkspacePreview() {
         <div className="ml-2 flex flex-1 items-center gap-1.5 rounded-md bg-navy-50 px-2 py-1 ring-1 ring-navy-100">
           <Search className="h-3 w-3 text-navy-400" />
           <span className="truncate text-[10px] text-navy-500">
-            find the notes where I struggled with working capital
+            find the notes where I struggled with the minus sign
           </span>
         </div>
       </div>
@@ -29,11 +29,13 @@ export function WorkspacePreview() {
       <div className="grid grid-cols-[86px_1fr_132px] sm:grid-cols-[104px_1fr_160px]">
         {/* Sidebar */}
         <div className="space-y-2.5 border-r border-navy-100 bg-navy-50/50 p-2.5">
-          <div className="text-[8px] font-semibold uppercase tracking-wider text-navy-400">Courses</div>
+          <div className="text-[8px] font-semibold uppercase tracking-wider text-navy-400">Course</div>
           <div className="space-y-1">
-            <div className="rounded bg-navy-900 px-1.5 py-1 text-[9px] font-medium text-white">FIN 301</div>
-            <div className="px-1.5 py-1 text-[9px] text-navy-600">ACC 210</div>
-            <div className="px-1.5 py-1 text-[9px] text-navy-600">STA 220</div>
+            <div className="rounded bg-navy-900 px-1.5 py-1 text-[9px] font-medium text-white">
+              Algebra I
+            </div>
+            <div className="px-1.5 py-1 text-[9px] text-navy-600">Worksheet 5</div>
+            <div className="px-1.5 py-1 text-[9px] text-navy-600">Quiz 2</div>
           </div>
           <div className="pt-1 text-[8px] font-semibold uppercase tracking-wider text-navy-400">Work</div>
           <div className="space-y-1.5">
@@ -58,7 +60,7 @@ export function WorkspacePreview() {
                 className="text-[11px] leading-snug text-brand-900"
                 style={{ fontFamily: 'var(--font-hand)' }}
               >
-                &Delta;NWC = 60 + 45 + 30 = 135
+                4x &minus; 8 &minus; 3x + 3 = 5
               </p>
               <span className="absolute -right-1.5 -top-1.5 rounded-full bg-brand-700 px-1.5 py-0.5 text-[7px] font-semibold text-white">
                 reading

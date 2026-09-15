@@ -2,29 +2,29 @@ import { describe, expect, it, vi } from 'vitest'
 import { regionAnalyses, scriptedReplies } from '@/data/tutorScript'
 import { buildContext, normalise, resolveReply, scoreReply, streamTutorReply } from './ai'
 
-const ctx = { courseId: 'fin301', assignmentId: 'ps4', openDocIds: ['doc-ps4-photo'] }
+const ctx = { courseId: 'algebra1', assignmentId: 'ws5', openDocIds: ['doc-ws5-photo'] }
 
 describe('normalise', () => {
   it('lowercases and strips punctuation', () => {
-    expect(normalise('Why is A/P a SOURCE of cash?!')).toBe('why is a/p a source of cash')
+    expect(normalise('Why does the MINUS go to both?!')).toBe('why does the minus go to both')
   })
 })
 
 describe('scoreReply', () => {
-  const payables = scriptedReplies.find((r) => r.id === 'payables-source')!
+  const minusReply = scriptedReplies.find((r) => r.id === 'why-minus-both')!
 
   it('scores a phrase match above a single word match', () => {
-    const phrase = scoreReply('why are accounts payable a source of cash', payables)
-    const word = scoreReply('payable', payables)
+    const phrase = scoreReply('why does the minus go to both terms', minusReply)
+    const word = scoreReply('negative', minusReply)
     expect(phrase).toBeGreaterThan(word)
   })
 
   it('scores an unrelated question at zero', () => {
-    expect(scoreReply('what is the capital of France', payables)).toBe(0)
+    expect(scoreReply('what is the capital of France', minusReply)).toBe(0)
   })
 
   it('scores an empty question at zero', () => {
-    expect(scoreReply('   ', payables)).toBe(0)
+    expect(scoreReply('   ', minusReply)).toBe(0)
   })
 })
 
@@ -34,9 +34,9 @@ describe('resolveReply', () => {
     expect(reply).toBe(regionAnalyses['part-a'])
   })
 
-  it('matches the payables explanation from a natural question', () => {
-    const reply = resolveReply({ question: 'Why is a rise in payables a source of cash?', context: ctx })
-    expect(reply.id).toBe('payables-source')
+  it('matches the sign explanation from a natural question', () => {
+    const reply = resolveReply({ question: 'Why does the minus go to both terms?', context: ctx })
+    expect(reply.id).toBe('why-minus-both')
   })
 
   it('matches the pattern reply when asked about repeated mistakes', () => {
@@ -56,7 +56,7 @@ describe('resolveReply', () => {
   })
 
   it('always returns something with text', () => {
-    for (const question of ['hello', 'wacc', 'p-value', 'zzzz', '']) {
+    for (const question of ['hello', 'like terms', 'check my answer', 'zzzz', '']) {
       const reply = resolveReply({ question, context: ctx })
       expect(reply.text.length).toBeGreaterThan(0)
     }
@@ -66,13 +66,13 @@ describe('resolveReply', () => {
 describe('buildContext', () => {
   it('separates open documents from the rest of the course', () => {
     const built = buildContext(ctx)
-    expect(built.openDocuments.map((d) => d.id)).toEqual(['doc-ps4-photo'])
-    expect(built.relatedDocuments.some((d) => d.id === 'doc-ps4-photo')).toBe(false)
+    expect(built.openDocuments.map((d) => d.id)).toEqual(['doc-ws5-photo'])
+    expect(built.relatedDocuments.some((d) => d.id === 'doc-ws5-photo')).toBe(false)
     expect(built.relatedDocuments.length).toBeGreaterThan(0)
   })
 
   it('collects the known struggle topics for the course', () => {
-    expect(buildContext(ctx).knownStruggles).toContain('working capital sign convention')
+    expect(buildContext(ctx).knownStruggles).toContain('distributing a negative')
   })
 })
 
@@ -83,7 +83,7 @@ describe('streamTutorReply', () => {
     const onDone = vi.fn()
 
     streamTutorReply(
-      { question: 'why is a rise in payables a source of cash', context: ctx },
+      { question: 'why does the minus go to both terms', context: ctx },
       { onChunk: (c) => chunks.push(c), onDone },
     )
 
@@ -92,7 +92,7 @@ describe('streamTutorReply', () => {
     expect(onDone).toHaveBeenCalledTimes(1)
     const reply = onDone.mock.calls[0][0]
     expect(chunks.join('')).toBe(reply.text)
-    expect(reply.replyId).toBe('payables-source')
+    expect(reply.replyId).toBe('why-minus-both')
     vi.useRealTimers()
   })
 
@@ -102,7 +102,7 @@ describe('streamTutorReply', () => {
     const chunks: string[] = []
 
     const cancel = streamTutorReply(
-      { question: 'explain free cash flow', context: ctx },
+      { question: 'show me the whole thing done right', context: ctx },
       { onChunk: (c) => chunks.push(c), onDone },
     )
 

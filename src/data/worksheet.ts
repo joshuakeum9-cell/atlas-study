@@ -8,70 +8,66 @@ import type { Worksheet } from '@/types'
  * In a real product this would be a camera image plus bounding boxes returned
  * by a handwriting recognition service; the shape of the data is the same.
  *
- * The student's work contains one deliberate, very common mistake: the increase
- * in accounts payable is ADDED to the change in net working capital instead of
- * subtracted. The error then carries through parts (b) and (c), which is what
- * makes the tutor's explanation worth reading.
+ * One problem, three steps, one mistake. The student expands -3(x + 1) as
+ * -3x + 3, applying the minus to the first term only. It is the most common
+ * error in the whole topic, and it carries through the next two lines, which is
+ * what makes the tutor's explanation worth reading.
+ *
+ *   Their answer:  x = 10        Correct:  x = 16
  */
 export const worksheet: Worksheet = {
-  id: 'ws-ps4',
-  docId: 'doc-ps4-photo',
-  title: 'Problem Set 4 - my handwritten work',
-  courseLabel: 'FIN 301 - Corporate Finance',
+  id: 'ws-5',
+  docId: 'doc-ws5-photo',
+  title: 'Worksheet 5 - my working',
+  courseLabel: 'Algebra I',
   printed: {
-    heading: 'FIN 301 — Problem Set 4',
-    sub: 'Harbor Logistics Inc.  ·  all figures in $000',
-    intro: 'Using the figures below, compute parts (a) to (c). Show your working.',
-    givens: [
-      ['Net income', '240'],
-      ['Depreciation & amortisation', '85'],
-      ['Increase in accounts receivable', '60'],
-      ['Increase in inventory', '45'],
-      ['Increase in accounts payable', '30'],
-      ['Capital expenditures', '120'],
-    ],
+    heading: 'Algebra I — Worksheet 5',
+    sub: 'Solving equations with brackets  ·  show every step',
+    intro: 'Question 3.   Solve for x:',
+    equation: '4(x − 2) − 3(x + 1) = 5',
+    // No table of givens for this one - the equation below is the whole setup.
+    givens: [],
     parts: [
-      { label: '(a)', text: 'Compute the change in net working capital.', y: 404 },
-      { label: '(b)', text: 'Compute cash flow from operations.', y: 548 },
-      { label: '(c)', text: 'Compute free cash flow.', y: 692 },
+      { label: '(a)', text: 'Expand the brackets.', y: 288 },
+      { label: '(b)', text: 'Collect like terms.', y: 438 },
+      { label: '(c)', text: 'Solve for x.', y: 588 },
     ],
   },
   handwriting: [
-    { x: 118, y: 452, text: 'ΔNWC = ΔAR + ΔInv + ΔAP', rotate: -0.6 },
-    { x: 130, y: 492, text: '= 60 + 45 + 30  =  135', rotate: -0.3 },
-    { x: 118, y: 596, text: 'CFO = NI + Dep − ΔNWC', rotate: -0.4 },
-    { x: 130, y: 636, text: '= 240 + 85 − 135  =  190', rotate: 0.4 },
-    { x: 118, y: 740, text: 'FCF = 190 − 120  =  70', rotate: -0.5 },
-    { x: 486, y: 470, text: 'check sign on A/P ??', rotate: -7, size: 21, tone: 'pencil' },
+    { x: 116, y: 338, text: '4x − 8 − 3x + 3 = 5', rotate: -0.5 },
+    { x: 116, y: 488, text: 'x − 5 = 5', rotate: -0.3 },
+    { x: 116, y: 638, text: 'x = 10', rotate: -0.6 },
+    { x: 470, y: 322, text: 'minus on both ?', rotate: -7, size: 21, tone: 'pencil' },
   ],
   regions: [
     {
       id: 'r-a',
       partLabel: 'Part (a)',
-      label: 'Change in net working capital',
-      box: { x: 100, y: 424, w: 372, h: 88 },
-      transcript: 'ΔNWC = ΔAR + ΔInv + ΔAP = 60 + 45 + 30 = 155',
-      uncertainTokens: ['155'],
-      likelyCorrection: 'ΔNWC = ΔAR + ΔInv + ΔAP = 60 + 45 + 30 = 135',
-      confidence: 0.86,
+      label: 'Expanding the brackets',
+      box: { x: 98, y: 306, w: 330, h: 48 },
+      // The recogniser misreads the final 5 as a 6, so confirming is a real step.
+      transcript: '4x − 8 − 3x + 3 = 6',
+      uncertainTokens: ['6'],
+      likelyCorrection: '4x − 8 − 3x + 3 = 5',
+      confidence: 0.87,
       analysisKey: 'part-a',
     },
     {
       id: 'r-b',
       partLabel: 'Part (b)',
-      label: 'Cash flow from operations',
-      box: { x: 100, y: 568, w: 392, h: 88 },
-      transcript: 'CFO = NI + Dep − ΔNWC = 240 + 85 − 135 = 190',
+      label: 'Collecting like terms',
+      box: { x: 98, y: 456, w: 210, h: 48 },
+      transcript: 'x − 5 = 5',
       uncertainTokens: [],
-      confidence: 0.94,
+      confidence: 0.95,
       analysisKey: 'part-b',
     },
     {
       id: 'r-c',
       partLabel: 'Part (c)',
-      label: 'Free cash flow',
-      box: { x: 100, y: 714, w: 320, h: 48 },
-      transcript: 'FCF = 190 − 120 = 70',
+      label: 'The final answer',
+      box: { x: 98, y: 606, w: 170, h: 48 },
+      transcript: 'x = 10',
       uncertainTokens: [],
       confidence: 0.97,
       analysisKey: 'part-c',
@@ -80,10 +76,10 @@ export const worksheet: Worksheet = {
       id: 'r-note',
       partLabel: 'Margin note',
       label: 'Note written beside part (a)',
-      box: { x: 462, y: 440, w: 232, h: 48 },
-      transcript: 'check sign on A/P ??',
-      uncertainTokens: ['A/P'],
-      confidence: 0.71,
+      box: { x: 448, y: 294, w: 236, h: 46 },
+      transcript: 'minus on both ?',
+      uncertainTokens: ['both'],
+      confidence: 0.73,
       analysisKey: 'margin-note',
     },
   ],

@@ -77,7 +77,7 @@ export function scoreReply(question: string, reply: ScriptedReply): number {
     } else if (tokens.has(k)) {
       score += 2
     } else if (k.length > 4 && q.includes(k)) {
-      // Catches plurals and simple suffixes ("payables" vs "payable").
+      // Catches plurals and simple suffixes ("brackets" vs "bracket").
       score += 1
     }
   }

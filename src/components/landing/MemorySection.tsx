@@ -4,26 +4,26 @@ import { SimulatedTag } from '@/components/ui/Badge'
 const STAGES = [
   {
     when: 'Week 1',
-    knows: 'One assignment and its handout',
-    says: 'Net working capital is operating current assets minus operating current liabilities.',
+    knows: 'One worksheet and its questions',
+    says: 'When a number is outside a bracket, it multiplies every term inside.',
     tone: 'A correct textbook answer. Any chatbot can do this.',
   },
   {
     when: 'Week 3',
     knows: 'Your notes, and where you flagged yourself',
-    says: 'Your Chapter 4 notes have the payables line written the wrong way round, with your own correction under it.',
-    tone: 'It can now point at your material instead of a textbook.',
+    says: 'Your Chapter 2 notes have this rule written backwards, with your own correction under it.',
+    tone: 'It can point at your material instead of a textbook.',
   },
   {
     when: 'Week 6',
-    knows: 'Marked work, and what the marker said',
-    says: 'This is the same sign that cost you four marks on Quiz 2 question 3.',
+    knows: 'Marked work, and what the teacher said',
+    says: 'This is the same slip that cost you 3 marks on Quiz 2 question 4.',
     tone: 'It connects today’s mistake to a specific past one.',
   },
   {
     when: 'Week 12',
-    knows: 'A term of patterns across every course',
-    says: 'It only goes wrong on payables, only mid-calculation, never when I ask you the definition. That is fluency, not understanding - drill it, do not re-read it.',
+    knows: 'A term of patterns across your work',
+    says: 'It only goes wrong when the number outside is negative, and never when I ask you the rule directly. That is a habit, not a gap - drill it, do not re-read it.',
     tone: 'It can say something no textbook and no fresh chat ever could.',
   },
 ]
@@ -45,7 +45,7 @@ export function MemorySection() {
           <p className="mt-4 text-pretty text-[15.5px] leading-relaxed text-navy-700">
             The long-term goal is not a chatbot that answers isolated questions. It is a record of
             how you have actually learned, so that the answer you get depends on everything that
-            came before it. Here is the same question about working capital, asked four times across
+            came before it. Here is the same question about expanding a bracket, asked four times across
             a term.
           </p>
         </div>

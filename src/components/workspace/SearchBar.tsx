@@ -214,8 +214,8 @@ export function SearchBar({ onOpenResult }: { onOpenResult: (result: SearchResul
               <div className="px-4 py-6 text-center">
                 <p className="text-[13.5px] font-medium text-navy-800">Nothing matched that</p>
                 <p className="mx-auto mt-1.5 max-w-xs text-[12.5px] leading-relaxed text-navy-600">
-                  This prototype searches a small sample library. Try &ldquo;working capital&rdquo;,
-                  &ldquo;the quiz I got wrong&rdquo; or &ldquo;cost of capital slides&rdquo;.
+                  This prototype searches a small sample library. Try &ldquo;expanding
+                  brackets&rdquo;, &ldquo;the quiz I got wrong&rdquo; or &ldquo;my notes&rdquo;.
                 </p>
               </div>
             ) : (

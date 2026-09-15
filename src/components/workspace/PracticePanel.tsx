@@ -14,7 +14,7 @@ import { useStore } from '@/state/store'
  * drilling rather than re-reading.
  */
 export function PracticePanel({ onAskTutor }: { onAskTutor: (question: string) => void }) {
-  const { state, dispatch, markExplored } = useStore()
+  const { state, dispatch } = useStore()
   const [index, setIndex] = useState(0)
   const [revealed, setRevealed] = useState<string | null>(null)
 
@@ -33,7 +33,6 @@ export function PracticePanel({ onAskTutor }: { onAskTutor: (question: string) =
     if (!option) return
     setRevealed(optionId)
     dispatch({ type: 'answer-practice', questionId: question.id, optionId, correct: option.correct })
-    markExplored('practice')
   }
 
   const next = () => {
@@ -51,7 +50,7 @@ export function PracticePanel({ onAskTutor }: { onAskTutor: (question: string) =
     <section className="rounded-xl bg-white p-5 shadow-panel ring-1 ring-navy-100">
       <div className="flex flex-wrap items-center gap-2">
         <h3 className="text-[15px] font-semibold tracking-tight text-navy-900">
-          Practice: working capital signs
+          Practice: the minus in front of a bracket
         </h3>
         <SimulatedTag label="Simulated feedback" />
         <span className="ml-auto text-[12px] tabular-nums text-navy-500">

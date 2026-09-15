@@ -7,304 +7,243 @@ import type {
 } from '@/types'
 
 /**
- * The "academic memory" layer. In a real product these would be derived by
- * analysing a term of a student's work; here they are authored so the demo
- * tells one coherent story - a single sign convention that keeps resurfacing.
+ * The "academic memory" layer, kept small.
+ *
+ * In a real product these would be derived by analysing a term of a student's
+ * work. Here they are authored so the demo tells one coherent story: a single
+ * sign slip that keeps resurfacing, and a clear way to close it.
  */
 export const struggles: StruggleInsight[] = [
   {
-    id: 'st-wc-sign',
-    topic: 'Working capital sign convention',
-    chapterId: 'ch4',
-    occurrences: 4,
-    severity: 86,
-    lastSeen: 'Today, Problem Set 4',
+    id: 'st-minus-bracket',
+    topic: 'The minus in front of a bracket',
+    chapterId: 'ch2',
+    occurrences: 3,
+    severity: 88,
+    lastSeen: 'Today, Worksheet 5',
     pattern:
-      'Only on the payables line, and only mid-calculation. When asked the definition directly you state it correctly. It goes wrong when you are working at speed.',
-    fix: 'Two ten-minute drill sessions rather than a re-read. Then rework Quiz 2 questions 3 and 5 without the marked copy in front of you.',
-    evidenceDocIds: ['doc-ps4-photo', 'doc-quiz2', 'doc-ch4-notes'],
+      'Only when the number outside the bracket is negative, and only mid-question. Asked the rule directly, you get it right every time. It slips when you are working quickly.',
+    fix: 'Five minutes of expanding brackets with a negative out front, twice this week. Then redo Quiz 2 question 4 without the marked copy in front of you.',
+    evidenceDocIds: ['doc-ws5-photo', 'doc-quiz2', 'doc-ch2-notes'],
   },
   {
-    id: 'st-wacc-weights',
-    topic: 'Market-value weights in WACC',
-    chapterId: 'ch6',
+    id: 'st-checking',
+    topic: 'Not checking the answer',
+    chapterId: 'ch3',
     occurrences: 2,
-    severity: 58,
-    lastSeen: '4 days ago, Lecture 6 notes',
+    severity: 44,
+    lastSeen: 'Today, Worksheet 5',
     pattern:
-      'You default to book values when the question does not spell it out. Not yet a habit - it has only come up twice - but Chapter 6 is heavily weighted on the midterm.',
-    fix: 'Read slides 4 to 12 of Lecture 6, then work one question where book and market weights are both given so the gap is visible.',
-    evidenceDocIds: ['doc-ch6-slides'],
-  },
-  {
-    id: 'st-pvalue',
-    topic: 'P-value interpretation',
-    chapterId: 's-ch2',
-    occurrences: 2,
-    severity: 47,
-    lastSeen: '2 days ago, STA 220 Problem Set 5',
-    pattern:
-      'The conditional gets inverted - written as the probability the null is true rather than the probability of the data given the null.',
-    fix: 'Write the correct sentence out once, in your own words, and keep it at the top of the chapter.',
-    evidenceDocIds: ['doc-sta-ps5'],
-  },
-  {
-    id: 'st-unearned',
-    topic: 'Direction of unearned revenue',
-    chapterId: 'a-ch2',
-    occurrences: 1,
-    severity: 31,
-    lastSeen: 'Yesterday, ACC 210 Problem Set 2',
-    pattern:
-      'The word "revenue" pulls you toward the income statement. It is a liability until the service is delivered.',
-    fix: 'One worked entry from cash receipt through to recognition will probably settle it.',
-    evidenceDocIds: ['doc-acc-ps2'],
+      'You almost never substitute your answer back into the original equation. Both of the questions you have lost marks on this term would have been caught by a fifteen-second check.',
+    fix: 'Make it a habit: every time you get a value for x, put it back in and see if both sides match.',
+    evidenceDocIds: ['doc-ws5-photo', 'doc-quiz2'],
   },
 ]
 
 export const strengths: StrengthInsight[] = [
   {
-    id: 'sg-tvm',
-    topic: 'Discounting and time value',
-    chapterId: 'ch1',
-    accuracy: 94,
-    note: 'Correct in every piece of work on record. The one lost mark was a compounding-period slip, not a method error.',
-  },
-  {
-    id: 'sg-indirect-order',
-    topic: 'Indirect method ordering',
-    chapterId: 'ch3',
-    accuracy: 88,
-    note: 'You used to put capex inside operating activities. That stopped three weeks ago and has not come back.',
-  },
-  {
-    id: 'sg-ratio-calc',
-    topic: 'Ratio computation',
+    id: 'sg-positive-brackets',
+    topic: 'Expanding positive brackets',
     chapterId: 'ch2',
-    accuracy: 91,
-    note: 'The arithmetic is reliable. It is the interpretation step that still wobbles, not the calculation.',
+    accuracy: 96,
+    note: 'Right in every piece of work on record. 4(x − 2) has never given you trouble.',
   },
   {
-    id: 'sg-layout',
-    topic: 'Showing your working',
+    id: 'sg-isolating',
+    topic: 'Getting x on its own',
+    chapterId: 'ch3',
+    accuracy: 92,
+    note: 'Your method here has been correct every single time, including on questions marked wrong where only the input was off.',
+  },
+  {
+    id: 'sg-working',
+    topic: 'Showing your steps',
     chapterId: 'ch1',
-    accuracy: 96,
-    note: 'Markers have twice commented on how legible your working is. That is why a sign error costs you one mark rather than the question.',
+    accuracy: 95,
+    note: 'Two teachers have now commented on how clear your working is. That is why a slip costs you one mark instead of the whole question.',
   },
 ]
 
 export const recommendations: ReviewRecommendation[] = [
   {
     id: 'rec-1',
-    title: 'Drill the working capital sign convention',
-    reason: 'Four appearances in three weeks and eight marks lost on Quiz 2. This is the highest-value 20 minutes available to you.',
-    minutes: 20,
-    chapterId: 'ch4',
+    title: 'Five minutes on negative brackets',
+    reason: 'Three appearances and 3 marks lost. This is the highest-value few minutes available to you.',
+    minutes: 5,
+    chapterId: 'ch2',
     kind: 'practice',
   },
   {
     id: 'rec-2',
-    title: 'Rework Quiz 2 questions 3 and 5',
-    reason: 'Same root cause as Problem Set 4. Redo them closed-book before you look at the marked copy again.',
-    minutes: 25,
+    title: 'Redo Quiz 2 question 4',
+    reason: 'Same slip as today. Do it closed-book before you look at the marked copy again.',
+    minutes: 10,
     chapterId: 'ch2',
     kind: 'redo',
   },
   {
     id: 'rec-3',
-    title: 'Lecture 6 slides 4 to 12 - market-value weights',
-    reason: 'Chapter 6 is at 52% mastery and carries the most weight on the midterm.',
-    minutes: 15,
-    chapterId: 'ch6',
-    kind: 'reread',
-  },
-  {
-    id: 'rec-4',
-    title: 'One clean run at the full cash flow build',
-    reason: 'Your method is right end to end. A single correct run with no sign errors will lock it in before the memo is due.',
-    minutes: 30,
+    title: 'Practise checking by substitution',
+    reason: 'A fifteen-second habit that would have caught both of the mistakes you have made this term.',
+    minutes: 10,
     chapterId: 'ch3',
     kind: 'practice',
   },
 ]
 
-/** Weekly study minutes, used by the small activity chart. */
+/** Weekly practice minutes, used by the small activity chart. */
 export const activityWeeks = [
-  { label: 'Wk 1', minutes: 120, errors: 3 },
-  { label: 'Wk 2', minutes: 185, errors: 5 },
-  { label: 'Wk 3', minutes: 150, errors: 4 },
-  { label: 'Wk 4', minutes: 240, errors: 2 },
-  { label: 'Wk 5', minutes: 205, errors: 2 },
-  { label: 'Wk 6', minutes: 275, errors: 1 },
+  { label: 'Wk 1', minutes: 40, errors: 3 },
+  { label: 'Wk 2', minutes: 65, errors: 4 },
+  { label: 'Wk 3', minutes: 55, errors: 3 },
+  { label: 'Wk 4', minutes: 90, errors: 2 },
+  { label: 'Wk 5', minutes: 75, errors: 2 },
+  { label: 'Wk 6', minutes: 105, errors: 1 },
 ]
 
 export const practiceQuestions: PracticeQuestion[] = [
   {
     id: 'pq-1',
-    chapterId: 'ch4',
-    topic: 'Working capital sign convention',
-    prompt: 'Over the year, accounts payable increased by 30. What is the effect on cash flow from operations?',
+    chapterId: 'ch2',
+    topic: 'The minus in front of a bracket',
+    prompt: 'Expand:   −3(x + 1)',
     options: [
       {
         id: 'a',
-        text: 'Cash flow from operations increases by 30',
+        text: '−3x − 3',
         correct: true,
         feedback:
-          'Correct. You received goods or services and have not paid for them yet, so the cash stayed with you. A rise in a current liability is a source of cash.',
+          'Correct. The minus belongs to the 3, and the 3 multiplies both terms inside. Negative three times x is −3x, negative three times +1 is −3.',
       },
       {
         id: 'b',
-        text: 'Cash flow from operations decreases by 30',
+        text: '−3x + 3',
         correct: false,
         feedback:
-          'This is the same slip as Problem Set 4 part (a) and Quiz 2 question 3. Payables rising means you have not paid yet, so cash stayed in your account. It is a source, not a use.',
+          'This is the exact slip from Worksheet 5 part (a) and Quiz 2 question 4. The minus reached the x but not the 1. It goes to both.',
       },
       {
         id: 'c',
-        text: 'No effect - payables are not an operating account',
+        text: '3x + 3',
         correct: false,
-        feedback:
-          'Payables are very much an operating account. They arise directly from trading with suppliers, which is why they sit inside the working capital adjustment.',
+        feedback: 'The minus has disappeared entirely here. It multiplies both terms, so both should end up negative.',
       },
       {
         id: 'd',
-        text: 'It depends on whether the payables are overdue',
+        text: '−3x + 1',
         correct: false,
-        feedback:
-          'Ageing matters for credit analysis, but not for the mechanics of the cash flow statement. The change in the balance is what moves cash.',
+        feedback: 'The 1 has been left alone. Everything inside the bracket gets multiplied, not just the x.',
       },
     ],
     explanation:
-      'Net working capital is operating current assets minus operating current liabilities. A rise in payables lowers net working capital, and because the change is subtracted in the cash flow build, cash flow from operations rises.',
+      'Read −3(x + 1) as "negative three times everything in the bracket". Check it with a number: if x = 2, the original is −3(3) = −9, and −3(2) − 3 = −9. They match.',
   },
   {
     id: 'pq-2',
-    chapterId: 'ch4',
-    topic: 'Working capital sign convention',
-    prompt:
-      'A firm reports net income of 400 and depreciation of 60. Receivables fell by 25, inventory rose by 40 and accounts payable rose by 15. What is cash flow from operations?',
-    given: ['Net income 400', 'Depreciation 60', 'Receivables −25', 'Inventory +40', 'Accounts payable +15'],
+    chapterId: 'ch2',
+    topic: 'The minus in front of a bracket',
+    prompt: 'Expand and simplify:   5 − 2(x + 4)',
     options: [
       {
         id: 'a',
-        text: '460',
+        text: '−2x − 3',
         correct: true,
         feedback:
-          'Correct. ΔNWC = (−25) + 40 − 15 = 0, so CFO = 400 + 60 − 0 = 460. All three signs handled right, including the receivables decrease.',
+          'Correct. 5 − 2x − 8, and 5 − 8 is −3. The minus went to both the x and the 4, and the 5 just came along for the ride.',
       },
       {
         id: 'b',
-        text: '430',
+        text: '−2x + 13',
         correct: false,
-        feedback:
-          'This adds the payables increase instead of subtracting it: (−25) + 40 + 15 = 30, giving 460 − 30 = 430. Payables rising is a source of cash.',
+        feedback: 'This gives the 4 a plus: 5 − 2x + 8. Negative two times +4 is −8, not +8.',
       },
       {
         id: 'c',
-        text: '410',
+        text: '3x + 12',
         correct: false,
-        feedback:
-          'This treats the receivables fall as a use of cash. When receivables drop, customers have paid you - the cash came in, so it reduces the change in net working capital.',
+        feedback: 'The 5 has been combined with the 2, which cannot happen while the bracket is still there. Expand first, then collect.',
       },
       {
         id: 'd',
-        text: '500',
+        text: '2x − 3',
         correct: false,
-        feedback:
-          'This looks like the working capital adjustment was skipped or reversed entirely. Start by computing ΔNWC on its own, then subtract it.',
+        feedback: 'Close on the numbers, but the x term should be negative. There is a minus in front of the 2.',
       },
     ],
     explanation:
-      'ΔNWC = Δreceivables + Δinventory − Δpayables = (−25) + 40 − 15 = 0. With no net working capital movement, CFO = 400 + 60 = 460. The trap is that one asset decreased, which flips its sign again.',
+      'Expand first: 5 − 2(x + 4) = 5 − 2x − 8. Then collect the plain numbers: 5 − 8 = −3, giving −2x − 3. This is the same question you lost 3 marks on in Quiz 2.',
   },
   {
     id: 'pq-3',
-    chapterId: 'ch4',
-    topic: 'Working capital sign convention',
-    prompt: 'A company reports a change in net working capital of −40 for the year. What does this tell you?',
+    chapterId: 'ch2',
+    topic: 'The minus in front of a bracket',
+    prompt: 'Expand:   −4(x − 2)',
     options: [
       {
         id: 'a',
-        text: 'The business released 40 of cash from working capital',
+        text: '−4x + 8',
         correct: true,
         feedback:
-          'Correct. A negative change means working capital shrank - faster collection, less inventory, or longer payment terms. In the cash flow build you subtract the change, and subtracting −40 adds 40.',
+          'Correct, and this is the one that catches people going the other way. Negative four times negative two is positive eight.',
       },
       {
         id: 'b',
-        text: 'The business consumed 40 of cash',
+        text: '−4x − 8',
         correct: false,
         feedback:
-          'This is Quiz 2 question 5 again. A negative change releases cash. A positive change is the one that consumes it.',
+          'Careful — there are two minuses meeting here. Negative four times negative two gives a positive. This one flips the other way.',
       },
       {
         id: 'c',
-        text: 'The company is running out of cash',
+        text: '4x − 8',
         correct: false,
-        feedback:
-          'Nothing here says that. A falling working capital balance is usually a cash inflow. Whether it is good news depends on why, which is a separate question.',
+        feedback: 'The minus on the 4 has been dropped. It multiplies both terms inside.',
       },
       {
         id: 'd',
-        text: 'Net income must have fallen by 40',
+        text: '−4x − 2',
         correct: false,
-        feedback:
-          'Working capital and net income are independent here. The working capital adjustment is exactly the bridge between reported profit and cash.',
+        feedback: 'The 2 was not multiplied. Everything inside the bracket gets multiplied by what is outside.',
       },
     ],
     explanation:
-      'Positive ΔNWC is a use of cash, negative ΔNWC is a source. The follow-up question a marker wants is why it fell: faster collection is healthy, while running inventory down to nothing is a warning.',
+      'Negative times positive is negative, so −4 × x = −4x. Negative times negative is positive, so −4 × −2 = +8. Check with x = 1: the original is −4(−1) = 4, and −4(1) + 8 = 4.',
   },
 ]
 
 export const sharedWorkspaces: SharedWorkspace[] = [
   {
     id: 'sw-1',
-    name: 'FIN 301 study group',
-    courseCode: 'FIN 301',
+    name: 'Algebra study group',
+    courseCode: 'Algebra I',
     owner: 'Priya N.',
     members: [
       { name: 'Priya Nair', initials: 'PN', role: 'Owner' },
       { name: 'You', initials: 'JK', role: 'Can edit' },
       { name: 'Marcus Lee', initials: 'ML', role: 'Can edit' },
-      { name: 'Tomas Oyelaran', initials: 'TO', role: 'Can view' },
     ],
     updated: 'Marcus added notes 2 hours ago',
-    itemCount: 14,
+    itemCount: 8,
   },
   {
     id: 'sw-2',
-    name: 'Midterm cram - cash flows',
-    courseCode: 'FIN 301',
+    name: 'Quiz 3 revision',
+    courseCode: 'Algebra I',
     owner: 'You',
     members: [
       { name: 'You', initials: 'JK', role: 'Owner' },
       { name: 'Priya Nair', initials: 'PN', role: 'Can edit' },
     ],
-    updated: 'You added 3 files yesterday',
-    itemCount: 7,
-  },
-  {
-    id: 'sw-3',
-    name: 'ACC 210 problem sets',
-    courseCode: 'ACC 210',
-    owner: 'Dana R.',
-    members: [
-      { name: 'Dana Rios', initials: 'DR', role: 'Owner' },
-      { name: 'You', initials: 'JK', role: 'Can view' },
-      { name: 'Sam Achebe', initials: 'SA', role: 'Can edit' },
-    ],
-    updated: 'Dana shared Problem Set 2 last week',
-    itemCount: 9,
+    updated: 'You added a file yesterday',
+    itemCount: 4,
   },
 ]
 
 /** Sample utterances the simulated microphone "hears". */
 export const voiceSamples = [
-  'Why is an increase in accounts payable a source of cash?',
+  'Why does the minus go to both terms?',
   'Where else have I made this mistake?',
-  'Can you show me the corrected working from the top?',
-  'Explain free cash flow like I have not seen it before',
-  'Help me write part d on earnings quality',
-  'Drill me on the sign convention',
+  'Show me the whole thing done right',
+  'How do I check my answer?',
+  'Give me one to practise',
 ]

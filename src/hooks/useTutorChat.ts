@@ -118,9 +118,8 @@ export function useTutorChat() {
     (conversationId: string) => {
       stop()
       dispatch({ type: 'select-conversation', conversationId })
-      markExplored('history')
     },
-    [dispatch, markExplored, stop],
+    [dispatch, stop],
   )
 
   return {

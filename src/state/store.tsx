@@ -11,7 +11,7 @@ import {
 import { assignments, courses } from '@/data/courses'
 import { seedConversations } from '@/data/conversations'
 import { documents } from '@/data/documents'
-import { clearAll, readJSON, writeJSON } from '@/lib/storage'
+import { clearAll, clearSupersededKeys, readJSON, writeJSON } from '@/lib/storage'
 import type { ChatMessage, Conversation, StudyDoc } from '@/types'
 import { uid } from '@/services/util'
 
@@ -26,16 +26,12 @@ import { uid } from '@/services/util'
 
 /** Things a first-time visitor can try, tracked so the demo can guide them. */
 export const DEMO_STEPS = [
-  { id: 'select-region', label: 'Circle part of the worksheet' },
-  { id: 'confirm-transcription', label: 'Confirm the transcription' },
+  { id: 'select-region', label: 'Circle part of the page' },
+  { id: 'confirm-transcription', label: 'Confirm what it read' },
   { id: 'ask-tutor', label: 'Ask the tutor a question' },
   { id: 'voice', label: 'Use the microphone' },
   { id: 'search', label: 'Search by description' },
-  { id: 'history', label: 'Open a past conversation' },
   { id: 'insights', label: 'Open learning insights' },
-  { id: 'practice', label: 'Answer a practice question' },
-  { id: 'share', label: 'Share a workspace' },
-  { id: 'import', label: 'Import a file' },
 ] as const
 
 export type DemoStepId = (typeof DEMO_STEPS)[number]['id']
@@ -86,9 +82,9 @@ type Action =
   | { type: 'dismiss-toast'; id: string }
   | { type: 'reset-demo' }
 
-const DEFAULT_COURSE = 'fin301'
-const DEFAULT_ASSIGNMENT = 'ps4'
-const DEFAULT_DOC = 'doc-ps4-photo'
+const DEFAULT_COURSE = 'algebra1'
+const DEFAULT_ASSIGNMENT = 'ws5'
+const DEFAULT_DOC = 'doc-ws5-photo'
 
 function firstConversationFor(conversations: Conversation[], assignmentId: string): string {
   return conversations.find((c) => c.assignmentId === assignmentId)?.id ?? ''
@@ -115,9 +111,20 @@ function initialState(): State {
 /** The slice written to localStorage. Stream and toasts are session-only. */
 type Persisted = Omit<State, 'stream' | 'toasts'>
 
+/**
+ * Bump this whenever the seed data changes in a way that makes older saved
+ * state wrong rather than merely stale. Saved conversations quote the documents
+ * they were about, so a visitor who saw an earlier version of the demo would
+ * otherwise keep those conversations next to a completely different worksheet.
+ */
+const STATE_KEY = 'state-v2'
+
 function loadState(): State {
   const base = initialState()
-  const saved = readJSON<Partial<Persisted> | null>('state-v1', null)
+  // A visitor who saw an earlier version of the demo still has its key sitting
+  // in their browser. It will never be read again, so drop it.
+  clearSupersededKeys(STATE_KEY)
+  const saved = readJSON<Partial<Persisted> | null>(STATE_KEY, null)
   if (!saved) return base
 
   // Guard every field: a stale or hand-edited payload must not break the app.
@@ -296,7 +303,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const { stream: _stream, toasts: _toasts, ...persisted } = state
-    writeJSON('state-v1', persisted)
+    writeJSON(STATE_KEY, persisted)
   }, [state])
 
   const markExplored = useCallback((step: DemoStepId) => dispatch({ type: 'mark-explored', step }), [])

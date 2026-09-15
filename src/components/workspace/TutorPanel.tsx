@@ -39,8 +39,8 @@ interface TutorPanelProps {
 
 const OPENERS = [
   'Where else have I made this mistake?',
-  'Why is a rise in payables a source of cash?',
-  'Show me the corrected working',
+  'Why does the minus go to both terms?',
+  'How do I check my answer?',
 ]
 
 export function TutorPanel({

@@ -38,7 +38,7 @@ const FEATURES = [
   {
     icon: FileSearch,
     title: 'Search by description',
-    body: '"The notes where I struggled with working capital" finds the document, because the workspace knows what is in it and how it went.',
+    body: '"The notes where I struggled with the minus sign" finds the page, because the workspace knows what is in it and how it went.',
   },
   {
     icon: LineChart,

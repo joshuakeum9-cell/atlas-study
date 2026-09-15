@@ -57,43 +57,23 @@ export function Sidebar({ onOpenInsights, onOpenShared, onImport, onResetDemo }:
   return (
     <nav
       className="scrollbar-slim flex h-full flex-col overflow-y-auto border-r border-navy-100 bg-navy-50/60 px-2 pb-3"
-      aria-label="Courses and files"
+      aria-label="Assignments and files"
     >
-      <SectionHeading>Courses</SectionHeading>
-      <ul className="space-y-0.5">
-        {courses.map((course) => {
-          const active = course.id === state.courseId
-          return (
-            <li key={course.id}>
-              <button
-                type="button"
-                onClick={() => dispatch({ type: 'select-course', courseId: course.id })}
-                aria-current={active ? 'true' : undefined}
-                className={cn(
-                  'flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-left transition-colors',
-                  active ? 'bg-navy-900 text-white' : 'text-navy-700 hover:bg-white hover:shadow-sm',
-                )}
-              >
-                <BookOpen
-                  className={cn('h-3.5 w-3.5 shrink-0', active ? 'text-brand-300' : 'text-navy-400')}
-                  aria-hidden="true"
-                />
-                <span className="min-w-0 flex-1">
-                  <span className="block text-[12.5px] font-semibold leading-tight">{course.code}</span>
-                  <span
-                    className={cn(
-                      'block truncate text-[11.5px] leading-tight',
-                      active ? 'text-navy-200' : 'text-navy-500',
-                    )}
-                  >
-                    {course.title}
-                  </span>
-                </span>
-              </button>
-            </li>
-          )
-        })}
-      </ul>
+      {/* One course in this demo, so it reads as context rather than a picker. */}
+      {courses.map((course) => (
+        <div
+          key={course.id}
+          className="mt-3 flex items-center gap-2 rounded-lg bg-navy-900 px-2.5 py-2 text-white"
+        >
+          <BookOpen className="h-4 w-4 shrink-0 text-brand-300" aria-hidden="true" />
+          <span className="min-w-0 flex-1">
+            <span className="block text-[12.5px] font-semibold leading-tight">{course.code}</span>
+            <span className="block truncate text-[11.5px] leading-tight text-navy-200">
+              {course.term}
+            </span>
+          </span>
+        </div>
+      ))}
 
       <SectionHeading>Assignments</SectionHeading>
       <ul className="space-y-0.5">

@@ -56,7 +56,7 @@ describe('findRegion', () => {
   })
 
   it('returns null for empty space on the page', () => {
-    expect(findRegion({ x: 620, y: 900, w: 120, h: 60 })).toBeNull()
+    expect(findRegion({ x: 560, y: 880, w: 120, h: 60 })).toBeNull()
   })
 
   it('picks the region with the greater overlap when a drag spans two', () => {
