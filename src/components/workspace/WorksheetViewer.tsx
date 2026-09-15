@@ -332,15 +332,24 @@ export function WorksheetViewer({
                 <button
                   key={region.id}
                   type="button"
-                  disabled={recognising}
-                  onClick={() => selectRegion(region)}
+                  // `aria-disabled` rather than `disabled`: disabling a button that
+                  // currently has focus makes the browser blur it to <body>, so a
+                  // keyboard user loses their place and the dialog has nothing to
+                  // restore focus to when it closes. The click guard below does the
+                  // work that `disabled` would have done.
+                  aria-disabled={recognising || undefined}
+                  onClick={() => {
+                    if (recognising) return
+                    selectRegion(region)
+                  }}
                   onFocus={() => setHovered(region.id)}
                   onBlur={() => setHovered((cur) => (cur === region.id ? null : cur))}
                   onMouseEnter={() => setHovered(region.id)}
                   onMouseLeave={() => setHovered((cur) => (cur === region.id ? null : cur))}
                   className={cn(
                     'inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[12.5px] font-medium transition-colors',
-                    'ring-1 ring-inset disabled:cursor-not-allowed disabled:opacity-60',
+                    'ring-1 ring-inset',
+                    recognising && 'cursor-not-allowed opacity-60',
                     isConfirmed
                       ? 'bg-emerald-50 text-emerald-800 ring-emerald-200 hover:bg-emerald-100'
                       : 'bg-white text-navy-700 ring-navy-200 hover:bg-navy-50',

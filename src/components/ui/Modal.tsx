@@ -83,7 +83,12 @@ export function Modal({
       document.body.style.overflow = previousOverflow
       // Same reason as above: the trigger is often scrolled out of view by the
       // time the dialog closes, and we must not scroll the shell to reach it.
-      restoreTo.current?.focus?.({ preventScroll: true })
+      // Only restore to an element that is still in the document - one that has
+      // been unmounted since would silently send focus to <body>.
+      const target = restoreTo.current
+      if (target?.isConnected && typeof target.focus === 'function') {
+        target.focus({ preventScroll: true })
+      }
     }
   }, [open, onClose, dismissible])
 
